@@ -10,12 +10,13 @@ function book (title, author, pages, read){
 //created a library for books to be stored
 const myLibrary = []
 
-function addBookToLibrary(myLibrary, book){
+function addBookToLibrary(){
    let title = document.querySelector("#title").value
    let author = document.getElementById("author").value
    let pages = document.getElementById("pages").value
    let read = document.getElementById("read").value
    let newBook = new book(title, author, pages, read)
+   console.log(newBook)
 
 }
 //when button new book is clicked the form appears
@@ -24,7 +25,11 @@ newBookBtn.addEventListener("click", function(){
     let newBookForm = document.querySelector("#new-book-form");
     newBookForm.style.display = "block"
 })
-
+//submits new book into the console
+document.querySelector("#new-book-form").addEventListener("submit", function(){
+    event.preventDefault()
+    addBookToLibrary();
+})
 
 
 
