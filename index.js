@@ -16,7 +16,8 @@ function addBookToLibrary(){
    let pages = document.getElementById("pages").value
    let read = document.getElementById("read").value
    let newBook = new book(title, author, pages, read)
-   console.log(newBook)
+   myLibrary.push(newBook)
+   render()
 
 }
 //when button new book is clicked the form appears
@@ -26,12 +27,25 @@ newBookBtn.addEventListener("click", function(){
     newBookForm.style.display = "block"
 })
 //submits new book into the console
-document.querySelector("#new-book-form").addEventListener("submit", function(){
+document.querySelector("#new-book-form").addEventListener("submit", function(event){
     event.preventDefault()
     addBookToLibrary();
 })
-
-
+//loop through myLibrary adds a <p> element to #library
+function render(){
+    let bookCase = document.querySelector("#library")
+    bookCase.innerHTML = ""
+    for(let i = 0; i < myLibrary.length; i++){
+    let book = myLibrary[i];
+    let bookElement = document.createElement("div");
+    bookElement.innerHTML = 
+    `<h3>${book.title}</h3> by
+    <h5>${book.author}</h5> 
+    <p>${book.pages}</p> pages 
+    <p>${book.read ? "Read" : "Not Read Yet"}</p>`
+    bookCase.appendChild(bookElement)
+}
+}
 
 
 
